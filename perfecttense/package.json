@@ -1,0 +1,50 @@
+{
+  "name": "libperfecttense",
+  "description": "Perfect Tense API",
+  "engines": {
+    "node": "12"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "dev": "nodemon index.js",
+    "clean": "rm -rf node_modules",
+    "prettier": "find . -name 'node_modules' -prune -o -name 'axios-0.18.0' -prune -o -iname '*.js' -exec prettier --write {} +"
+  },
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "perfecttense": "^1.0.40"
+  },
+  "devDependencies": {},
+  "prettier": {
+    "printWidth": 120,
+    "arrowParens": "always",
+    "parser": "flow",
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "useTabs": true,
+    "jsxBracketSameLine": true,
+    "bracketSpacing": true
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "es6": true,
+      "node": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "no-console": "off",
+      "no-empty-pattern": "off",
+      "no-unused-vars": "off"
+    }
+  },
+  "private": true
+}
