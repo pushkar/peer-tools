@@ -1,0 +1,12 @@
+fragment user on User {
+	created
+	updated
+	username
+	email
+}
+
+query GetUser {
+	user {
+		...user
+	}
+}

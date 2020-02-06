@@ -8,8 +8,8 @@ manual_scaling:
   instances: 2
 
 resources:
-  cpu: 2
-  memory_gb: 3.2
+  cpu: 1
+  memory_gb: 1.6
   disk_size_gb: 10
 
 network:

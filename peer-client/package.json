@@ -1,0 +1,53 @@
+{
+  "name": "peer",
+  "version": "0.0.1",
+  "private": true,
+  "devDependencies": {
+    "@apollo/client": "^3.0.0-beta.25",
+    "@craco/craco": "^5.6.3",
+    "@firebase/storage": "^0.3.24",
+    "@reach/router": "^1.2.1",
+    "apollo-link-error": "^1.1.12",
+    "apollo-link-ws": "^1.0.19",
+    "cogo-toast": "^4.2.1",
+    "firebase": "^7.7.0",
+    "graphql": "^14.6.0",
+    "graphql-tag": "^2.10.1",
+    "prettier": "^1.19.1",
+    "react": "^16.12.0",
+    "rimraf": "^3.0.0",
+    "semantic-ui-react": "^0.88.2",
+    "subscriptions-transport-ws": "^0.9.16"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "scripts": {
+    "dev": "REACT_APP_ENV=local BROWSER=none craco start",
+    "start": "REACT_APP_ENV=prod BROWSER=none craco start",
+    "build": "REACT_APP_ENV=prod craco build",
+    "test": "craco test",
+    "clean": "rimraf build; rimraf node_modules",
+    "lint": "eslint .",
+    "prettier": "find src -iname '*.js' -exec prettier --write {} + && find src -iname '*.gql' -exec prettier --write --parser graphql {} +",
+    "deploy": "yarn build && firebase deploy -P peerexams"
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "parser": "flow",
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "useTabs": true
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "dependencies": {
+    "react-dom": "^16.12.0",
+    "react-scripts": "^3.3.1"
+  }
+}
