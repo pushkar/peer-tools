@@ -1,0 +1,16 @@
+runtime: nodejs
+env: flex
+service: default
+
+# env_variables:
+
+manual_scaling:
+  instances: 2
+
+resources:
+  cpu: 2
+  memory_gb: 3.2
+  disk_size_gb: 10
+
+network:
+  session_affinity: true

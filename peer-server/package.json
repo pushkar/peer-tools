@@ -1,0 +1,67 @@
+{
+	"name": "peer-server",
+	"version": "0.0.1",
+	"main": "index.js",
+	"license": "UNLICENSED",
+	"description": "GraphQL interface for the peer server",
+	"scripts": {
+		"start": "node index.js",
+		"dev": "nodemon --ignore '*.csv' --ignore '*.json' --ignore '*.apk' --ignore '*.ipa' index.js",
+		"clean": "rimraf node_modules",
+		"lint": "eslint .",
+		"prettier": "find index.js modules -iname '*.js' -exec prettier --write {} + ",
+		"deploy": "yarn clean; GAE_VERSION=$(echo ${npm_package_version} | sed 's/\\./-/g') && gcloud app deploy --version $GAE_VERSION",
+		"build:test": "gcloud builds submit --tag gcr.io/peer-exams/gql",
+		"deploy:test": "gcloud beta run deploy --image gcr.io/peer-exams/gql --platform managed"
+	},
+	"engines": {
+		"node": ">=12.4.0",
+		"npm": "6.9"
+	},
+	"eslintConfig": {
+		"env": {
+			"browser": true,
+			"commonjs": true,
+			"es6": true,
+			"node": true
+		},
+		"extends": "eslint:recommended",
+		"parserOptions": {
+			"ecmaVersion": 2018
+		},
+		"plugins": [
+			"prettier"
+		],
+		"rules": {
+			"no-console": "off",
+			"no-empty-pattern": "off",
+			"no-unused-vars": "off"
+		}
+	},
+	"dependencies": {
+		"@graphql-modules/core": "^0.7.14",
+		"apollo-server": "^2.9.16",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"firebase-admin": "^8.9.2",
+		"graphql": "^14.6.0"
+	},
+	"devDependencies": {
+		"eslint": "^6.8.0",
+		"eslint-plugin-prettier": "^3.1.2",
+		"nodemon": "^2.0.2",
+		"prettier": "^1.19.1",
+		"rimraf": "^3.0.0"
+	},
+	"prettier": {
+		"printWidth": 120,
+		"arrowParens": "always",
+		"parser": "flow",
+		"semi": false,
+		"singleQuote": true,
+		"trailingComma": "all",
+		"useTabs": true,
+		"jsxBracketSameLine": true,
+		"bracketSpacing": true
+	}
+}
