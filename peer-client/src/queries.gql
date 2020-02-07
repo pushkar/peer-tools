@@ -1,12 +1,53 @@
+query GetUser($userId: String!) {
+	user(userId: $userId) {
+		...user
+	}
+}
+
+query GetUsers {
+	users {
+		...user
+	}
+}
+
+query GetQuestion($questionId: String!) {
+	user(questionId: $questionId) {
+		...question
+	}
+}
+
+query GetQuestions {
+	questions {
+		...question
+	}
+}
+
 fragment user on User {
+	id
 	created
 	updated
 	username
 	email
 }
 
-query GetUser {
-	user {
+fragment answer on Answer {
+	id
+	text
+	totalGrades
+	correctness
+	editable
+}
+
+fragment question on Question {
+	id
+	text
+	answers {
+		...answer
+	}
+}
+
+mutation CreateUser($userId: String!) {
+	createUser(userId: $userId) {
 		...user
 	}
 }

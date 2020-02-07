@@ -9,11 +9,12 @@ const typeDefs = gql`
 		users: [User]
 		user(userId: String!): User
 		questions: [Question]
-	question(questionId: String!): Question
+		question(questionId: String!): Question
 		captcha(captchaId: String!): Captcha
 	}
 
 	type Mutation {
+		createUser(userId: String!): [User]
 		createCaptcha(questionId: String!): [Captcha]
 		gradeCaptcha(captchaId: String!): [Captcha]
 	}

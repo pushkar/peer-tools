@@ -78,6 +78,11 @@ module.exports = {
 	},
 
 	Mutation: {
+		createUser: async (_, { userId }, context) => {
+			console.log(`Create user ${userId}`)
+			return user.create(userId)
+		},
+
 		createCaptcha: async (_, { questionId }, context) => {
 			console.log(`Create a captcha for ${questionId}`)
 			return captcha.create(questionId)
