@@ -9,7 +9,7 @@
 		"dev": "nodemon --ignore '*.csv' --ignore '*.json' --ignore '*.apk' --ignore '*.ipa' index.js",
 		"clean": "rimraf node_modules",
 		"lint": "eslint .",
-		"prettier": "find index.js modules -iname '*.js' -exec prettier --write {} + ",
+		"prettier": "find index.js answers.js modules -iname '*.js' -exec prettier --write {} + ",
 		"deploy": "yarn clean; GAE_VERSION=$(echo ${npm_package_version} | sed 's/\\./-/g') && gcloud app deploy --version $GAE_VERSION",
 		"build:test": "gcloud builds submit --tag gcr.io/peer-exams/gql",
 		"deploy:test": "gcloud beta run deploy --image gcr.io/peer-exams/gql --platform managed"
@@ -41,10 +41,12 @@
 	"dependencies": {
 		"@graphql-modules/core": "^0.7.14",
 		"apollo-server": "^2.9.16",
+		"csvtojson": "^2.0.10",
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
 		"firebase-admin": "^8.9.2",
-		"graphql": "^14.6.0"
+		"graphql": "^14.6.0",
+		"perfecttense": "^1.0.40"
 	},
 	"devDependencies": {
 		"eslint": "^6.8.0",

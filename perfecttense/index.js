@@ -34,4 +34,6 @@ function ptFailure(error) {
 	}
 }
 
-ptClient.submitJob('Sm incrrect text', process.env.PT_API_KEY).then(ptSuccess, ptFailure)
+// ptClient.submitJob('False. scale invariance mean that it will achive the same results independent of the weights or distance calculation method , nasa problem.', process.env.PT_API_KEY).then(ptSuccess, ptFailure)
+
+ptClient.submitJob('False. Scale invariance means that it will achieve the same results as before.', process.env.PT_API_KEY).then(ptSuccess, ptFailure)
