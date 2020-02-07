@@ -25,7 +25,7 @@ exports.update = async (userId, data) => {
 	})
 	const user = await userRef.get()
 	return {
-		id: userRef.path,
+		id: userRef.id,
 		...user.data(),
 	}
 }
@@ -42,7 +42,7 @@ exports.create = async (userId, data) => {
 	}
 	user = await userRef.get()
 	return {
-		id: userRef.path,
+		id: userRef.id,
 		...user.data(),
 	}
 }

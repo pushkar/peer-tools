@@ -39,7 +39,7 @@ export function useCreateUser() {
 	mutation[0] = (variables) =>
 		createUser({
 			variables,
-		})
+		}).then((res) => res.data.createUser)
 	return mutation
 }
 
