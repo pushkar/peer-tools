@@ -38,3 +38,7 @@ exports.create = async (data) => {
 		...captcha.data(),
 	}
 }
+
+exports.new = async (questionId) => {}
+
+exports.grade = async (captchaId) => {}

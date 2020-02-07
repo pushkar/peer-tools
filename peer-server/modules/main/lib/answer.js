@@ -1,12 +1,21 @@
 const admin = require('firebase-admin')
 
 exports.get = async (questionId, answerId) => {
-	const answerRef = admin.firestore().doc(`questions/${questionId}/answers/${answerId}`)
-	const answer = await answerRef.get()
-	return {
-		id: answerRef.path,
-		...answer.data(),
+	if (answerId) {
+		const answerRef = admin.firestore().doc(`questions/${questionId}/answers/${answerId}`)
+		const answer = await answerRef.get()
+		return {
+			id: answerRef.path,
+			...answer.data(),
+		}
 	}
+
+	const answersRef = admin.firestore().collection(`questions/${questionId}/answers`)
+	const answers = await answers.get()
+	return answers.docs.map((answer) => ({
+		id: answers.id,
+		...answers.data(),
+	}))
 }
 
 exports.update = async (questionId, answerId, data) => {

@@ -6,7 +6,16 @@ const typeDefs = gql`
 	scalar DateTime
 
 	type Query {
+		users: [User]
 		user(userId: String!): User
+		questions: [Question]
+	question(questionId: String!): Question
+		captcha(captchaId: String!): Captcha
+	}
+
+	type Mutation {
+		createCaptcha(questionId: String!): [Captcha]
+		gradeCaptcha(captchaId: String!): [Captcha]
 	}
 
 	type User {

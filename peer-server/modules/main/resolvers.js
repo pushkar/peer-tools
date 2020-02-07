@@ -3,6 +3,10 @@
 const admin = require('firebase-admin')
 const { GraphQLScalarType } = require('graphql')
 const { Kind } = require('graphql/language')
+const user = require('./lib/user.js')
+const question = require('./lib/question')
+const answer = require('./lib/answer')
+const captcha = require('./lib/captcha')
 
 module.exports = {
 	DateTime: new GraphQLScalarType({
@@ -47,9 +51,47 @@ module.exports = {
 	}),
 
 	Query: {
-		user: async (_, {}, context) => {
-			console.log(`Fetching user ${context.user.uid}`)
-			return {}
+		users: async (_, {}) => {
+			console.log(`Fetching users`)
+			return user.get()
+		},
+
+		user: async (_, { userId }) => {
+			console.log(`Fetching user ${userId}`)
+			return user.get(userId)
+		},
+
+		questions: async (_, {}) => {
+			console.log(`Fetching questions`)
+			return question.get()
+		},
+
+		question: async (_, { questionId }) => {
+			console.log(`Fetching question ${questionId}`)
+			return question.get(questionId)
+		},
+
+		captcha: async (_, { captchaId }) => {
+			console.log(`Fetching captcha ${captchaId}`)
+			return captcha.get(captchaId)
+		},
+	},
+
+	Mutation: {
+		createCaptcha: async (_, { questionId }, context) => {
+			console.log(`Create a captcha for ${questionId}`)
+			return captcha.create(questionId)
+		},
+
+		gradeCaptcha: async (_, { captchaId }, context) => {
+			console.log(`Grading captcha ${captchaId}`)
+			return captcha.grade(captchaId)
+		},
+	},
+
+	Question: {
+		answers: async (question, _, context) => {
+			return answer.get(question.id)
 		},
 	},
 }
