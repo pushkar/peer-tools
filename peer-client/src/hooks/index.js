@@ -34,8 +34,12 @@ export function useGetUser(userId) {
 
 export function useCreateUser() {
 	let mutation = useMutation(queries.CreateUser)
-	const [, { error }] = mutation
+	const [createUser, { error }] = mutation
 	useGraphQLErrorToast(error)
+	mutation[0] = (variables) =>
+		createUser({
+			variables,
+		})
 	return mutation
 }
 

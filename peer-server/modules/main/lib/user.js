@@ -32,12 +32,15 @@ exports.update = async (userId, data) => {
 
 exports.create = async (userId, data) => {
 	const userRef = admin.firestore().doc(`users/${userId}`)
+	let user = await userRef.get()
+	if (!user.exists) {
 	await userRef.set({
-		created: admin.firestore.FieldValue.serverTimestamp(),
-		updated: admin.firestore.FieldValue.serverTimestamp(),
-		...data,
-	})
-	const user = await userRef.get()
+			created: admin.firestore.FieldValue.serverTimestamp(),
+			updated: admin.firestore.FieldValue.serverTimestamp(),
+			...data,
+		})
+	}
+	user = await userRef.get()
 	return {
 		id: userRef.path,
 		...user.data(),

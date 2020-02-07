@@ -14,13 +14,14 @@ const typeDefs = gql`
 	}
 
 	type Mutation {
-		createUser(userId: String!): [User]
+		createUser(userId: String!): User
 		createCaptcha(questionId: String!): [Captcha]
 		gradeCaptcha(captchaId: String!): [Captcha]
 	}
 
 	type User {
 		id: ID!
+		email: String
 		created: DateTime
 		updated: DateTime
 		username: String
